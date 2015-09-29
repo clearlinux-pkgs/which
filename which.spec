@@ -4,7 +4,7 @@
 #
 Name     : which
 Version  : 2.20
-Release  : 6
+Release  : 7
 URL      : http://pkgs.fedoraproject.org/repo/pkgs/which/which-2.20.tar.gz/95be0501a466e515422cde4af46b2744/which-2.20.tar.gz
 Source0  : http://pkgs.fedoraproject.org/repo/pkgs/which/which-2.20.tar.gz/95be0501a466e515422cde4af46b2744/which-2.20.tar.gz
 Summary  : No detailed summary available
