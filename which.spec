@@ -4,7 +4,7 @@
 #
 Name     : which
 Version  : 2.21
-Release  : 13
+Release  : 14
 URL      : http://pkgs.fedoraproject.org/repo/pkgs/which/which-2.21.tar.gz/097ff1a324ae02e0a3b0369f07a7544a/which-2.21.tar.gz
 Source0  : http://pkgs.fedoraproject.org/repo/pkgs/which/which-2.21.tar.gz/097ff1a324ae02e0a3b0369f07a7544a/which-2.21.tar.gz
 Summary  : No detailed summary available
