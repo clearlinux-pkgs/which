@@ -4,14 +4,16 @@
 #
 Name     : which
 Version  : 2.21
-Release  : 14
+Release  : 15
 URL      : http://pkgs.fedoraproject.org/repo/pkgs/which/which-2.21.tar.gz/097ff1a324ae02e0a3b0369f07a7544a/which-2.21.tar.gz
 Source0  : http://pkgs.fedoraproject.org/repo/pkgs/which/which-2.21.tar.gz/097ff1a324ae02e0a3b0369f07a7544a/which-2.21.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-3.0
-Requires: which-bin
-Requires: which-doc
+Requires: which-bin = %{version}-%{release}
+Requires: which-info = %{version}-%{release}
+Requires: which-license = %{version}-%{release}
+Requires: which-man = %{version}-%{release}
 BuildRequires : binutils-dev
 
 %description
@@ -22,36 +24,69 @@ You will need an ANSI C compiler (like gcc) to compile this package.
 %package bin
 Summary: bin components for the which package.
 Group: Binaries
+Requires: which-license = %{version}-%{release}
 
 %description bin
 bin components for the which package.
 
 
-%package doc
-Summary: doc components for the which package.
-Group: Documentation
+%package info
+Summary: info components for the which package.
+Group: Default
 
-%description doc
-doc components for the which package.
+%description info
+info components for the which package.
+
+
+%package license
+Summary: license components for the which package.
+Group: Default
+
+%description license
+license components for the which package.
+
+
+%package man
+Summary: man components for the which package.
+Group: Default
+
+%description man
+man components for the which package.
 
 
 %prep
 %setup -q -n which-2.21
+cd %{_builddir}/which-2.21
 
 %build
-export LANG=C
-%configure --disable-static
-make V=1  %{?_smp_mflags}
-
-%check
-export LANG=C
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
-export no_proxy=localhost
+export no_proxy=localhost,127.0.0.1,0.0.0.0
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1573774589
+export GCC_IGNORE_WERROR=1
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
+%configure --disable-static
+make  %{?_smp_mflags}
+
+%check
+export LANG=C.UTF-8
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
+export SOURCE_DATE_EPOCH=1573774589
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/which
+cp %{_builddir}/which-2.21/COPYING %{buildroot}/usr/share/package-licenses/which/8624bcdae55baeef00cd11d5dfcfa60f68710a02
 %make_install
 
 %files
@@ -61,7 +96,14 @@ rm -rf %{buildroot}
 %defattr(-,root,root,-)
 /usr/bin/which
 
-%files doc
-%defattr(-,root,root,-)
-%doc /usr/share/info/*
-%doc /usr/share/man/man1/*
+%files info
+%defattr(0644,root,root,0755)
+/usr/share/info/which.info
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/which/8624bcdae55baeef00cd11d5dfcfa60f68710a02
+
+%files man
+%defattr(0644,root,root,0755)
+/usr/share/man/man1/which.1
