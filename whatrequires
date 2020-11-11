@@ -1,5 +1,7 @@
 # This file contains recursive sources that require this package
+bazel
 cmd2
 filesystem
 glib
 tensorflow-serving
+xvfb-run

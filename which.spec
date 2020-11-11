@@ -4,7 +4,7 @@
 #
 Name     : which
 Version  : 2.21
-Release  : 15
+Release  : 16
 URL      : http://pkgs.fedoraproject.org/repo/pkgs/which/which-2.21.tar.gz/097ff1a324ae02e0a3b0369f07a7544a/which-2.21.tar.gz
 Source0  : http://pkgs.fedoraproject.org/repo/pkgs/which/which-2.21.tar.gz/097ff1a324ae02e0a3b0369f07a7544a/which-2.21.tar.gz
 Summary  : No detailed summary available
@@ -63,14 +63,14 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1573774589
+export SOURCE_DATE_EPOCH=1605120560
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %configure --disable-static
 make  %{?_smp_mflags}
@@ -80,10 +80,10 @@ export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-make VERBOSE=1 V=1 %{?_smp_mflags} check
+make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1573774589
+export SOURCE_DATE_EPOCH=1605120560
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/which
 cp %{_builddir}/which-2.21/COPYING %{buildroot}/usr/share/package-licenses/which/8624bcdae55baeef00cd11d5dfcfa60f68710a02
